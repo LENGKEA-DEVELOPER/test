@@ -1,0 +1,133 @@
+   use HasFactory;
+    protected $fillable =[
+'status',
+'image'
+    ];
+}
+////
+  $request->validate([
+'image' => 'required|mimes:jpeg,bmp,png|size:1000',
+'status'=>'required'
+    ]);
+    $input = $request->all();
+    if($image=$request->file('image')){
+        $part='img/';
+        $imagelogo= date('YmdHis').'.'.$image->getClientOriginalExtension();
+        $image->move($part,$imagelogo);
+        $input['image']="$imagelogo";
+    }
+$logo=logo::create($input);
+    return redirect()->route('logo.index');
+
+
+    
+Route::controller(LogoController::class)->group(function(){
+    Route::get('/logo.index','index')->name('logo.index');
+    Route::get('/logo.create','create')->name('logo.create');
+    Route::post('/logo.store','store')->name('logo.store');
+    Route::get('/logo.edit/{logo}','edit')->name('logo.edit');
+    Route::post('/logo.edit/{logo}','update')->name('logo.update');
+    Route::delete('/logo.delete{logo}','destroy')->name('logo.delete');
+});
+http://localhost:8080/phpmyadmin/
+
++create project 
+composer create-project laravel/laravel name "9.*"
+
++create migration
+php artisan make:migration create_product_table
+
++delete migration
+php artisan migrate:rollback
+
++create model
+php artisan make:model product
+
++create factory
+php artisan make:factory ProducFactory
+
++create 3in 1 cmd(model,controller,factory)
+php artisan make:model name -mcf
+
++for testing data
+php artisan tinker
+
++create fake data
+App/Model/Product::Factory()->create();
+App/Model/Product::Factory()->count(value)create();
++create controller
+php artisan make:controller employeecontroller --resource
+ 
++create database
+php artisan migrate
+
++not found
+use App\Http\controllers\ProductController;
+
++select database not found
+use App\Models\Product;
+
++create 3in 1 cmd(model,controller,factory)
+php artisan make:model name -mc --resource
+
++category=>required
+'title'=>'required|max:100|min:3',
+'price'=>'required|numberic',
+'image'=>'required|image|mimes:jpg,png,jpeg,gif,svg|max2048|dimensions:min_width=100,min_height=100,max_width=10000,max_height=10000','discrition'=>'required'
+
+
+
+  $request->validate([
+    'name'=>'required|max:50|min:3',
+    'qty' =>'required|numeric',
+    'price'=>'required|numeric'
+        ]);
+
+
+
+
++after write route
+php artisan optimize
++insert form
+ @csrf
+
++how to create login and register
+composer require laravel/breeze --dev
+php artisan breeze:install
+ 
+php artisan migrate
+npm install
+npm run dev
+
+
+
++image
+   $request->validate([
+'image'=>'required',
+'status'=>'required'
+    ]);
+    $input = $request->all();
+    if($image=$request->file('image')){
+        $part='img/';
+        $imagelogo= date('YmdHis').'.'.$image->getClientOriginalExtension();
+        $image->move($part,$imagelogo);
+        $input['image']="$imagelogo";
+    }
+$logo=logo::create($input);
+    return redirect()->route('logo.index');
+    }
+
+
+
+
+ $input = $request->all();
+        if($image=$request->file('image')){
+            $part='ima/';
+            $imageStudent= date('YmdHis').'.'.$image->getClientOriginalExtension();
+            $image->move($part,$imageStudent);
+            $input['image']="$imageStudent";
+        }
+        $Student= student::create($input);
+        return redirect()->route('index');
+
+material icon theme
